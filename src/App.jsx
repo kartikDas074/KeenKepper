@@ -6,10 +6,7 @@ function App() {
 
   return (
     <>
-       <div className=' text-2xl'>
-        teri ma ki
-       </div>
-       <button className='btn'> botn</button>
+      
     </>
   )
 }
