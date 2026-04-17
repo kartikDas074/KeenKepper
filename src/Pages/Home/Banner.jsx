@@ -1,6 +1,7 @@
 import { Feather } from 'lucide-react';
-import React, { use, useState } from 'react';
+import React, { use, useContext, useState } from 'react';
 import { IoIosPersonAdd } from 'react-icons/io';
+import { RecentActivites } from '../../RecentActivites/RecentActivites';
 let friend=fetch('/friend.json').then(res=>res.json());
 const Banner = () => {
     let cnt=0;
@@ -9,6 +10,7 @@ const Banner = () => {
         if(useme[i].status=='Ontrack')cnt++;
     }
     let [count,setCount]=useState(cnt);
+    let {recentAct,setRecentAct}=useContext(RecentActivites);
     return (
         <div className='w-full max-w-[90vw] md:max-w-[80vw] mx-auto pt-[30px] md:pt-[120px]'>
         <div className='flex flex-col justify-center items-center gap-[18px]'>
@@ -34,7 +36,7 @@ relationships that matter most.</p>
                 <p className='text-[#64748B] text-[26px] md:text-[18px] font-medium text-center'>Need Attention</p>
             </div>
             <div className='px-[10px] py-[10px] rounded-[8px] bg-white shadow-sm flex flex-col justify-center items-center'>
-                <h1 className='text-[#244D3F] text-[24px] md:text-[32px] font-semibold'>8</h1>
+                <h1 className='text-[#244D3F] text-[24px] md:text-[32px] font-semibold'>{recentAct.length}</h1>
                 <p className='text-[#64748B] text-[26px] md:text-[18px] font-medium text-center'>Interactions This Month</p>
             </div>
         </div>  

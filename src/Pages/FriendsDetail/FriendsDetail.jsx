@@ -23,10 +23,12 @@ const FriendsDetail = () => {
 
         const now = new Date();
         let dat= now.toLocaleDateString();
+        let timer=now.toLocaleTimeString();
         let newEntry={
             id:recentAct.length,
             name:Friend.name,
             date:dat,
+            time:timer,
             action:str
         }
 
