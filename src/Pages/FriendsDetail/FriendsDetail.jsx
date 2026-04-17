@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import Card from './Card';
 import { RiDeleteBinLine, RiNotificationSnoozeFill } from 'react-icons/ri';
@@ -7,13 +7,33 @@ import { TiEdit } from 'react-icons/ti';
 import { MdAddCall } from 'react-icons/md';
 import { FaEnvelopeOpenText } from 'react-icons/fa';
 import { IoMdVideocam } from 'react-icons/io';
+import { RecentActivites } from '../../RecentActivites/RecentActivites';
+import { toast } from 'react-toastify';
 
 const FriendsDetail = () => {
     let params=useParams();
     let Id=params.Id;
     let detial=useLoaderData();
     let Friend=detial.find(res=>res.id==Id);
+    let {recentAct,setRecentAct}=useContext(RecentActivites);
     
+
+    //New Entry For Every Action
+    let ActionClick=(str)=>{
+
+        const now = new Date();
+        let dat= now.toLocaleDateString();
+        let newEntry={
+            id:recentAct.length,
+            name:Friend.name,
+            date:dat,
+            action:str
+        }
+
+        setRecentAct([...recentAct,newEntry]);
+
+        toast.success(`${str} with ${Friend.name}`)
+    }
     return (
         <div className='w-full bg-[#F8FAFC]'>
             <div className='w-full max-w-[90vw] md:max-w-[85vw] mx-auto py-[50px] md:py-[100px]'>
@@ -54,7 +74,7 @@ const FriendsDetail = () => {
                                 Quick Check-In
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-3 w-full gap-[20px]'>
-                                <div>
+                                <div onClick={()=>ActionClick('call')}>
                                     <button className='btn flex flex-col h-[100px] px-[40px] bg-gray-300 px-[20px] py-[20px] w-full'>
                                     <p><MdAddCall className='text-2xl' /></p>
                                     <p className='text-[18px] font-semibold text-[#1F2937] text-center'>Call</p>
@@ -62,14 +82,14 @@ const FriendsDetail = () => {
                                     
                                 </div>
                                 
-                                <div>
+                                <div onClick={()=>ActionClick('text')}>
                                     <button className='btn flex flex-col h-[100px] px-[40px] bg-gray-300 px-[20px] py-[20px] w-full'>
                                     <p><FaEnvelopeOpenText className='text-2xl' /></p>
                                     <p className='text-[18px] font-semibold text-[#1F2937] text-center'>Text</p>
                                     </button>
                                     
                                 </div>
-                                <div>
+                                <div onClick={()=>ActionClick('video')}>
                                     <button className='btn flex flex-col h-[100px] px-[40px] bg-gray-300 px-[20px] py-[20px] w-full'>
                                     <p><IoMdVideocam className='text-2xl' /></p>
                                     <p className='text-[18px] font-semibold text-[#1F2937] text-center'>Video</p>
