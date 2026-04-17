@@ -4,7 +4,7 @@ import Friend from './Friend';
 const Friends = ({friend}) => {
     let useme=use(friend);
     return (
-        <div >
+        <div className='my-[30px] md:my-[50px]'>
               
 
               <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[20px]'>

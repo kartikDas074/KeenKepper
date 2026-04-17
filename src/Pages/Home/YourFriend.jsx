@@ -12,7 +12,7 @@ const YourFriend = () => {
                 Your Friends
               </div>  
               <Suspense  fallback={
-                <div className="w-48 md:w-[300px] h-48 md:w-[300px] flex justify-center items-center mx-auto">
+                <div className="w-48 md:w-[300px] h-48 md:w-[300px] flex justify-center items-center mx-auto ">
                  <LottieComponent 
                  animationData={loadingAnimation} 
                   loop={true} 

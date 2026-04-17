@@ -1,9 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 
 const Friend = ({me}) => {
-   
+   let Navigate=useNavigate();
     return (
-        <div className='flex flex-col justify-center items-center shadow-sm py-[10px] rounded-[10px]'>
+        <div onClick={()=>Navigate(`friends/${me.id}`)} className='flex flex-col justify-center items-center shadow-sm py-[10px] rounded-[10px] group relative border border-gray-100 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-100/50 hover:-translate-y-2 overflow-hidden hover:bg-[#c3b1b1]'>
             <div  className='h-[110px] w-[110px]  bg-gray-200 rounded-[10px] flex flex-col justify-center items-center'>
                 <img className='h-[110px] w-[110px] rounded-full' src={me.picture} alt="" />
             </div>

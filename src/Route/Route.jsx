@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import Timeline from "../Pages/TImeline/Timeline";
 import Status from "../Pages/Status/Status";
 import Error from "../Pages/Error/Error";
+import FriendsDetail from "../Pages/FriendsDetail/FriendsDetail";
 
 export const router=createBrowserRouter([
   {
@@ -21,6 +22,11 @@ export const router=createBrowserRouter([
         {
             path:'Status',
             Component: Status
+        },
+        {
+          path:'friends/:Id',
+          loader:()=> fetch('/friend.json'),
+          Component:FriendsDetail
         }
     ]
   },
